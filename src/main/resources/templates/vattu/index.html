@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Vật Tư</title>
+
+    <!-- Add your custom CSS styles -->
+
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách Vật Tư</h2>
+
+        <!-- Add a "Create" button -->
+        <div class="action-buttons">
+            <a class="button-13" th:href="@{/api/vattu/new}">Create</a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Vật Tư</th>
+                <th>Đơn Vị Tính</th>
+                <th>Giá Nhập</th>
+                <th>Giá Bán</th>
+                <!-- Add more columns based on VatTu entity properties -->
+<!--                <th>Nhà Cung Cấp</th>-->
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through the list of VatTu entities and display each one -->
+            <tr th:each="vattu : ${listVatTu}">
+                <td th:text="${vattu.id}"></td>
+                <td th:text="${vattu.tenVatTu}"></td>
+                <td th:text="${vattu.donViTinh}"></td>
+                <td th:text="${vattu.giaNhap}"></td>
+                <td th:text="${vattu.giaBan}"></td>
+                <!-- Add more cells based on VatTu entity properties -->
+
+<!--                &lt;!&ndash; Assuming NhaCungCapVatTu has a property called tenNhaCungCap &ndash;&gt;-->
+<!--                <td th:text="${vattu.nhacungcapvattu.tenNhaCungCap}"></td>-->
+
+                <td>
+                    <a th:href="@{/api/vattu/edit/{id}(id=${vattu.id})}">
+                        <button class="button-13">
+                            Cập nhật
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách chức vụ</title>
+
+    <!-- Add your custom CSS styles -->
+
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách chức vụ</h2>
+
+        <!-- Add a "Create" button -->
+        <div class="action-buttons">
+            <a class="create-button" th:href="@{/api/chucvu/new}">Create</a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Chức Vụ</th>
+                <!-- Add more columns based on ChucVu entity properties -->
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through the list of ChucVu entities and display each one -->
+            <tr th:each="chucvu : ${listChucVu}">
+                <td th:text="${chucvu.id}"></td>
+                <td th:text="${chucvu.TenChucVu}"></td>
+                <!-- Add more cells based on ChucVu entity properties -->
+                <td>
+                    <a th:href="@{/api/chucvu/edit/{id}(id=${chucvu.id})}">
+                        <button class="button-13">
+                            Cập nhật
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

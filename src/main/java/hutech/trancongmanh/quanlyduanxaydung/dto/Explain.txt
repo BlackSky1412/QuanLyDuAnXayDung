@@ -1,0 +1,2 @@
+DTO (Data Transfer Object) Package: DTOs là các đối tượng sẽ được sử dụng để truyền dữ liệu giữa controller và service hoặc giữa service và repository. Điều này giúp bạn đảm bảo rằng dữ liệu được truyền đi và trả về từ API được quản lý một cách rõ ràng.
+

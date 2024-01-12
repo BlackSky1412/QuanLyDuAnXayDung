@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật khách hàng</title>
+
+    <!-- Add your custom CSS styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Add border-radius for a subtle curve */
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional styles for title */
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        select,
+        select option {
+            color: #000; /* Set the text color for options to black */
+        }
+
+        /* Set the background color for the select dropdown */
+        select {
+            background-color: #fff;
+        }
+
+        /* Set the text color for selected option */
+        select option:checked {
+            color: #000;
+        }
+    </style>
+
+
+</head>
+<body>
+<main layout:fragment="content">
+    <h2>Cập nhật khách hàng</h2>
+    <!-- Your form for creating a new Du An -->
+    <!-- Similar to the create form, populate fields with existing data -->
+    <form action="/api/khachhang/edit" th:object="${khachhang}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <!-- Add form fields for KhachHang properties -->
+        <label for="tenKhachhang">Tên khách hàng:</label>
+        <input type="text" id="tenKhachhang" name="tenKhachhang" th:field="*{tenKhachHang}" required>
+
+        <label for="diaChi">Địa Chỉ:</label>
+        <input type="text" id="diaChi" name="diaChi" th:field="*{diaChi}" required>
+
+        <label for="sdt">Số điện thoại:</label>
+        <input type="text" id="sdt" name="sdt" th:field="*{SDT}" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" th:field="*{email}" required>
+
+        <label for="tennganhhang">Tên ngân hàng:</label>
+        <input type="text" id="tennganhhang" name="tennganhhang" th:field="*{tenNganHang}" required>
+
+        <label for="sotaikhoan">Số tài khoản:</label>
+        <input type="text" id="sotaikhoan" name="sotaikhoan" th:field="*{soTaiKhoan}" required>
+
+
+        <!-- Dropdown for BacKhachHang -->
+        <label>
+            <select name="backhachhang" class="form-control" th:field="*{backhachhang}" required>
+                <option  value="0">- Chọn bâc -</option>
+                <option  th:each="backhachhang : ${bacKhachHangList}" th:value="${backhachhang.id}" th:text="${backhachhang.TenBac}"></option>
+            </select>
+        </label>
+
+        <button type="submit">Cập nhật khách hàng</button>
+    </form>
+</main>
+
+</body>
+</html>

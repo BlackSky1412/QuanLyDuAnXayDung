@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{ViewNhaThau/layoutNhaThau}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danh sách tiến độ</title>
+
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách tiến độ</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Mã tiến độ</th>
+                <th>Nhiệm vụ</th>
+                <th>Ngày Bắt Đầu</th>
+                <th>Ngày Hoàn Thành</th>
+                <th>Trạng Thái</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="chitiettiendo : ${listChitiettiendo}">
+                <td th:text="${chitiettiendo.id}"></td>
+                <td th:text="${chitiettiendo.NameTask}"></td>
+                <td th:text="${#dates.format(chitiettiendo.NgayBatDau, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(chitiettiendo.NgayHoanThanh, 'dd/MM/yyyy')}"></td>
+                <td th:text="${chitiettiendo.trangthai.TenTrangThai}"></td>
+                <td>
+                    <a th:href="@{/nhathau/upanh/{id}(id=${chitiettiendo.id})}">
+                        <button class="button-13">
+                            Tải ảnh lên
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

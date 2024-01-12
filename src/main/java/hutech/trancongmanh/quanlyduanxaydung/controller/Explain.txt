@@ -1,0 +1,3 @@
+Controller Package:
+Đây là nơi bạn đặt các lớp controller, nơi xử lý các yêu cầu HTTP từ người dùng hoặc các dịch vụ khác.
+Mỗi endpoint API thường có một lớp controller tương ứng.

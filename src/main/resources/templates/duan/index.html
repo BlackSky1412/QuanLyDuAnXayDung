@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Các thẻ meta bắt buộc -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách dự án</title>
+
+    <!-- Thêm các thuộc tính CSS -->
+
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/customCss.css">
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách dự án</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Mã dự án</th>
+                <th>Tên dự án</th>
+                <th>Địa chỉ</th>
+                <th>Trạng thái</th>
+                <th>Chức năng</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Lặp qua danh sách các entity DuAn và hiển thị mỗi dự án -->
+            <tr th:each="duan : ${duanList}">
+                <td th:text="${duan.id}"></td>
+                <td th:text="${duan.TenDuAn}"></td>
+                <td th:text="${duan.DiaChi}"></td>
+                <td th:text="${duan.trangthai.getTenTrangThai()}"></td>
+                <!-- Thêm các ô khác dựa trên thuộc tính của entity DuAn -->
+                <!-- Nút chức năng -->
+                <td>
+                    <a th:href="@{/api/tiendo/{id}(id=${duan.id})}">
+                        <button class="button-13">Chi tiết</button>
+                    </a>
+                    <a th:href="@{/api/duan/edit/{id}(id=${duan.id})}">
+                        <button class="button-13">Cập nhật</button>
+                    </a>
+                </td>
+                <!-- Kết thúc nút chức năng-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

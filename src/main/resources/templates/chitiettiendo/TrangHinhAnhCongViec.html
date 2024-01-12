@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Status</title>
+
+    <!-- Add your custom CSS styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        select, select option {
+            color: #000;
+        }
+
+        select {
+            background-color: #fff;
+        }
+
+        select option:checked {
+            color: #000;
+        }
+
+        /* Additional styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead, tbody {
+            border-bottom: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+<main layout:fragment="content">
+    <h2>Update Status</h2>
+    <form action="/api/chitiettiendo/edit" method="post" th:object="${existingEntity}">
+        <!-- Display existing entity details -->
+
+        <!-- Status dropdown -->
+        <label for="trangthai">Status:</label>
+        <select id="trangthai" name="trangthai" th:field="${existingEntity.trangthai.id}" class="form-control">
+            <option th:each="trangthai : ${trangthaiList}"
+                    th:value="${trangthai.id}"
+                    th:text="${trangthai.TenTrangThai}"></option>
+        </select>
+
+        <!-- Comment textarea -->
+        <label for="nhanxet">Nhận xét:</label>
+        <textarea id="nhanxet" name="nhanxet" th:field="${existingEntity.NhanXet}" required></textarea>
+
+        <!-- Hidden input for entity ID -->
+        <input type="hidden" id="id" name="id" th:field="${existingEntity.id}"/>
+
+        <!-- Submit button -->
+        <button type="submit" class="button-13">Update Status</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hình</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through the list of KhachHang entities and display each one -->
+        <tr th:each="anh : ${listimages}">
+            <td th:text="${anh.id}"></td>
+            <td>
+                <img th:src=" ${anh.Path}" alt="Image"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

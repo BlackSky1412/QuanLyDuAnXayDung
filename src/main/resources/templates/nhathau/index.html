@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Nhà Thầu</title>
+
+    <!-- Add your custom CSS styles -->
+
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách Nhà Thầu</h2>
+
+        <!-- Add a "Create" button -->
+        <div class="action-buttons">
+            <a class="button-13" th:href="@{/api/nhathau/new}">Create</a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Nhà Thầu</th>
+                <th>Địa Chỉ</th>
+                <th>SDT</th>
+                <th>Email</th>
+                <th>Tên Ngân Hàng</th>
+                <th>Số Tài Khoản</th>
+                <!-- Add more columns based on NhaThau entity properties -->
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through the list of NhaThau entities and display each one -->
+            <tr th:each="nhathau : ${listNhaThau}">
+                <td th:text="${nhathau.id}"></td>
+                <td th:text="${nhathau.TenNhaThau}"></td>
+                <td th:text="${nhathau.DiaChi}"></td>
+                <td th:text="${nhathau.SDT}"></td>
+                <td th:text="${nhathau.Email}"></td>
+                <td th:text="${nhathau.TenNganHang}"></td>
+                <td th:text="${nhathau.SoTaiKhoan}"></td>
+                <!-- Add more cells based on NhaThau entity properties -->
+
+                <td>
+                    <a th:href="@{/api/nhathau/edit/{id}(id=${nhathau.id})}">
+                        <button class="button-13">
+                            Cập nhật
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

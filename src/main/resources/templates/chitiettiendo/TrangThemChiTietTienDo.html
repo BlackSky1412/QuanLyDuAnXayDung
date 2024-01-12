@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thêm mới tiến độ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Add border-radius for a subtle curve */
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional styles for title */
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        select,
+        select option {
+            color: #000; /* Set the text color for options to black */
+        }
+
+        /* Set the background color for the select dropdown */
+        select {
+            background-color: #fff;
+        }
+
+        /* Set the text color for selected option */
+        select option:checked {
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="add-progress">
+        <h2>Thêm mới tiến độ</h2>
+        <form action="/api/chitiettiendo/new" method="post" th:object="${chitiettiendo}">
+
+            <label>Nhiệm vụ:</label>
+            <input type="text" th:field="${chitiettiendo.NameTask}" />
+
+            <label>Ngày Bắt Đầu:</label>
+            <input type="date" th:field="${chitiettiendo.NgayBatDau}" />
+            <!-- You might want to use a date picker for date fields -->
+
+            <label>Ngày Hoàn Thành:</label>
+            <input type="date" th:field="${chitiettiendo.NgayHoanThanh}" />
+
+
+            <select id="trangthai" name="trangthai"  required style="display:none;">
+                <!-- Populate the dropdown with transaction type options -->
+                <option th:each="trangthai : ${trangthaiList}" th:value="${trangthai.id }" th:text="${trangthai.TenTrangThai == DANG_CHO}"></option>
+            </select>
+
+            <button type="submit" class="button-13">Thêm mới</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

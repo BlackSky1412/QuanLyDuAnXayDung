@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách giao dịch</h2>
+        <div class="action-buttons">
+            <a class="create-button" th:href="@{/api/quanlygiaodichduan/new}">Thêm giao dịch</a>
+        </div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên giao dịch</th>
+                <th>Ngày giao dịch</th>
+                <th>Nội dung</th>
+                <th>Dự án</th>
+                <th>Dạng giao dịch</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through the list of transactions and display each row -->
+            <tr th:each="quanlygiaodichduan : ${listgiaodich}">
+                <td th:text="${quanlygiaodichduan.id}"></td>
+                <td th:text="${quanlygiaodichduan.TenGiaoDich}"></td>
+                <td th:text="${quanlygiaodichduan.NgayGiaoDich}"></td>
+                <td th:text="${quanlygiaodichduan.NoiDung}"></td>
+                <td th:text="${quanlygiaodichduan.getDuan().getTenDuAn()}"></td>
+                <td th:text="${quanlygiaodichduan.getDanggiaodich().getDangGiaoDich()}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

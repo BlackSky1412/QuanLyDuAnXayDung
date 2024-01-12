@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa chức vụ</title>
+
+    <!-- Add your custom CSS styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Add border-radius for a subtle curve */
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional styles for title */
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        select,
+        select option {
+            color: #000; /* Set the text color for options to black */
+        }
+
+        /* Set the background color for the select dropdown */
+        select {
+            background-color: #fff;
+        }
+
+        /* Set the text color for selected option */
+        select option:checked {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<main layout:fragment="content">
+    <h2>Sửa chức vụ</h2>
+    <!-- Your form for editing an existing ChucVu -->
+    <form action="/api/chucvu/edit" th:object="${chucvu}" method="post">
+        <!-- Add form fields for ChucVu properties -->
+        <input type="hidden" th:field="*{id}"/>
+        <label for="tenChucVu">Tên chức vụ:</label>
+        <input type="text" id="tenChucVu" name="tenChucVu" th:field="*{TenChucVu}" required>
+
+        <!-- Add more form fields for other ChucVu properties -->
+
+        <button class="button-13" type="submit">Lưu thay đổi</button>
+    </form>
+</main>
+</body>
+</html>

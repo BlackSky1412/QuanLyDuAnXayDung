@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{ViewNhaThau/layoutNhaThau}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Danh sách tiến độ</title>
+
+    <!-- Add your custom CSS styles -->
+</head>
+
+<body>
+<main layout:fragment="content">
+    <div class="recent-orders">
+        <h2>Danh sách tiến độ</h2>
+        <div class="action-buttons">
+            <a class="create-button" th:href="@{/api/tiendo/new}">Create</a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Mã tiến độ</th>
+                <th>Nội Dung</th>
+                <th>Yêu Cầu Cần Đạt</th>
+                <th>Nhà thầu xây dựng</th>
+                <th>Tiến độ tiên quyết</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Lặp qua danh sách các entity DuAn và hiển thị mỗi dự án -->
+            <tr th:each="bangtheodoitiendo : ${listtiendo}">
+                <td th:text="${bangtheodoitiendo.id}"></td>
+                <td th:text="${bangtheodoitiendo.NoiDung}"></td>
+                <td th:text="${bangtheodoitiendo.YeuCauCanDat}"></td>
+                <td th:text="${bangtheodoitiendo.nhathau.TenNhaThau}"></td>
+                <td th:text="${bangtheodoitiendo.TenDoTienQuyetID}"></td>
+                <!-- Thêm các ô khác dựa trên thuộc tính của entity DuAn -->
+                <!-- Nút chức năng -->
+                <td>
+                    <a th:href="@{'/nhathau/chitiettiendo/' + ${bangtheodoitiendo.id}}">
+                        <button class="button-13">
+                            Chi tiết
+                        </button>
+                    </a>
+                </td>
+                <!-- Kết thúc nút chức năng-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

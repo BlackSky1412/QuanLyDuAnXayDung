@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{ViewKhachHang/layoutKhachHang}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Them Giao Dich</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Add border-radius for a subtle curve */
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional styles for title */
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        select,
+        select option {
+            color: #000; /* Set the text color for options to black */
+        }
+
+        /* Set the background color for the select dropdown */
+        select {
+            background-color: #fff;
+        }
+
+        /* Set the text color for selected option */
+        select option:checked {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="add-transaction">
+        <h2>Thêm giao dịch</h2>
+
+        <!-- Form for adding transactions -->
+        <form action="/khachhang/giaodich/new" method="post">
+            <label for="tenGiaoDich">Tên giao dịch:</label>
+            <input type="text" id="tenGiaoDich" name="tenGiaoDich" required>
+
+            <input type="date" id="ngayGiaoDich" name="ngayGiaoDich" style="display: none;" required>
+
+            <script>
+                // Get the current date in the format "YYYY-MM-DD"
+                const currentDate = new Date().toISOString().split('T')[0];
+
+                // Set the value of the ngayGiaoDich input field to the current date
+                document.getElementById('ngayGiaoDich').value = currentDate;
+            </script>
+
+
+            <label for="noiDung">Nội dung:</label>
+            <textarea id="noiDung" name="noiDung" required></textarea>
+
+            <label for="duAn">Dự án:</label>
+            <select id="duan" name="duan"  required>
+                <!-- Populate the dropdown with project options -->
+                <option th:each="duan : ${listduan}" th:value="${duan.id}" th:text="${duan.tenDuAn}"></option>
+            </select>
+
+            <select id="danggiaodich" name="danggiaodich"  required style="display:none;">
+                <!-- Populate the dropdown with transaction type options -->
+                <option th:each="dangGiaoDich : ${listdang}" th:value="${dangGiaoDich.id }" th:text="${dangGiaoDich.dangGiaoDich == Thu}"></option>
+            </select>
+
+            <button type="submit">Thêm</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>
+

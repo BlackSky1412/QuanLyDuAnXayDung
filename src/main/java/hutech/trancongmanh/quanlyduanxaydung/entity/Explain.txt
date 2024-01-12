@@ -1,0 +1,1 @@
+Entity Package: Nếu bạn sử dụng cơ sở dữ liệu và ORM (Object-Relational Mapping) như JPA, bạn có thể có các lớp Entity hoặc model ở đây. Đây là nơi bạn đặt các định nghĩa dữ liệu của ứng dụng, và chúng ánh xạ thành các bảng trong cơ sở dữ liệu.

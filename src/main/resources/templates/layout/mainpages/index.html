@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/style.css">
+    <title>Responsive Dashboard Design #1 | AsmrProg</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar Section -->
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <img src="/assets/images/logo.png" alt="">
+                    <h2>Asmr<span class="danger">Prog</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/api/duan" class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                    <h3>Dự án</h3>
+                </a>
+                <a href="/api/khachhang" class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                    <h3>Khách hàng</h3>
+                </a>
+                <a href="/api/nhathau" class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        receipt_long
+                    </span>
+                    <h3>Nhà thầu</h3>
+                </a>
+                <a href="/api/quanlygiaodichduan" class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                    <h3>Giao dịch</h3>
+                </a>
+                <a href="/api/vattu"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        mail_outline
+                    </span>
+                    <h3>Vật tư</h3>
+                </a>
+                <a href="/api/nhacungcap"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        report_gmailerrorred
+                    </span>
+                    <h3>Nhà cung cấp</h3>
+                </a>
+                <a href="/api/nhanvien"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        report_gmailerrorred
+                    </span>
+                    <h3>Nhân viên</h3>
+                </a>
+                <a href="/api/vandephatsinh"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        inventory
+                    </span>
+                    <h3>Rủi ro</h3>
+                </a>
+<!--                <a href="/api/thongke"class="sidebar-link" onclick="activateLink(this)">-->
+<!--                    <span class="material-icons-sharp">-->
+<!--                        report_gmailerrorred-->
+<!--                    </span>-->
+<!--                    <h3>Thống kê</h3>-->
+<!--                </a>-->
+                <a href="/api/taikhoan"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        settings
+                    </span>
+                    <h3>Tài khoản</h3>
+                </a>
+                <a href="/api/logout"class="sidebar-link" onclick="activateLink(this)">
+                    <span class="material-icons-sharp">
+                        logout
+                    </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of Sidebar Section -->
+<!--        Table -->
+        <main layout:fragment="content">
+            <div class="recent-orders">
+                <h2>Recent Orders</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ten Du An</th>
+                        <th>Dia Chi</th>
+                        <th>Actions</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Lặp qua danh sách các entity DuAn và hiển thị mỗi dự án -->
+
+                    </tbody>
+                </table>
+                <a href="#">Show All</a>
+            </div>
+        </main>
+<!--        End Table-->
+    </div>
+
+    <script src="/assets/orders.js"></script>
+    <script src="/assets/index.js"></script>
+</body>
+
+</html>

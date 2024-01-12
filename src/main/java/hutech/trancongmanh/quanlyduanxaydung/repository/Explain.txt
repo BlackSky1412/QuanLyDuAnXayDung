@@ -1,0 +1,2 @@
+Repository Package: Đây là nơi bạn đặt các lớp repository, nơi tương tác với cơ sở dữ liệu.
+Sử dụng JPA hoặc Hibernate để tạo và thực hiện các truy vấn cơ sở dữ liệu.

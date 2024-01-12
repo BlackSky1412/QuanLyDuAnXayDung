@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/mainpages/index}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo dự án</title>
+
+    <!-- Add your custom CSS styles -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Add border-radius for a subtle curve */
+            font-size: 16px;
+        }
+
+        select {
+            color: #555;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional styles for title */
+        title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        select,
+        select option {
+            color: #000; /* Set the text color for options to black */
+        }
+
+        /* Set the background color for the select dropdown */
+        select {
+            background-color: #fff;
+        }
+
+        /* Set the text color for selected option */
+        select option:checked {
+            color: #000;
+        }
+    </style>
+
+
+</head>
+<body>
+<main layout:fragment="content">
+    <h2>Tạo dự án</h2>
+    <!-- Your form for creating a new Du An -->
+    <form action="/api/duan/new" method="post" enctype="multipart/form-data" th:object="${duan}">
+        <!-- Add form fields for Du An properties -->
+
+        <label for="tenDuAn">Tên Dự Án:</label>
+        <input type="text" id="tenDuAn" name="tenDuAn" th:field="*{tenDuAn}" required>
+
+        <label for="diaChi">Địa Chỉ:</label>
+        <input type="text" id="diaChi" name="diaChi" th:field="*{diaChi}" required>
+
+        <label for="ngayKy">Ngày Ký:</label>
+        <input type="date" id="ngayKy" name="ngayKy" th:field="*{ngayKy}" required>
+
+        <label for="ngayKhoiCong">Ngày Khởi Công:</label>
+        <input type="date" id="ngayKhoiCong" name="ngayKhoiCong" th:field="*{ngayKhoiCong}" required>
+
+        <label for="ngayHoanThanhDuKien">Ngày Hoàn Thành Dự Kiến:</label>
+        <input type="date" id="ngayHoanThanhDuKien" name="ngayHoanThanhDuKien" th:field="*{ngayHoanThanhDuKien}" required>
+
+        <label for="chiPhiUocTinh">Chi Phí Ước Tính:</label>
+        <input type="number" id="chiPhiUocTinh" name="chiPhiUocTinh" th:field="*{chiPhiUocTinh}" required>
+
+<!--        <label for="chiPhiThucTe">Chi Phí Thực Tế:</label>-->
+        <input type="number" id="chiPhiThucTe" name="chiPhiThucTe" th:field="*{chiPhiThucTe}" hidden="hidden">
+
+        <label for="giayPhepXayDung">Giấy Phép Xây Dựng:</label>
+        <input type="file" id="giayPhepXayDung" accept="image/*" name="giayPhepXayDung" >
+
+        <label for="banThietKe">Bản Thiết Kế:</label>
+        <input type="file" id="banThietKe" name="banThietKe" accept="image/*">
+
+
+        <select name="cachThucThanhToan"  class="form-control" th:field="*{cachthucthanhtoan}" required>
+            <option value="0">- Chọn cách thức thanh toán -</option>
+            <option th:each="cachthucthanhtoan : ${cachThucThanhToanList}" th:value="${cachthucthanhtoan.id}" th:text="${cachthucthanhtoan.TenCachThuc}"></option>
+        </select>
+
+        <select name="khachhang" class="form-control" th:field="*{khachhang}" required>
+            <option  value="0">- Chọn khách hàng -</option>
+            <option  th:each="khachhang : ${khachhangList}" th:value="${khachhang.id}" th:text="${khachhang.TenKhachHang}"></option>
+        </select>
+
+        <select name="trangthai" class="form-control" th:field="*{trangthai}" required>
+            <option  value="0">- Chọn trạng thái -</option>
+            <option  th:each="trangthai : ${trangthaiList}" th:value="${trangthai.id}" th:text="${trangthai.TenTrangThai}"></option>
+        </select>
+
+        <button type="submit">Create Du An</button>
+    </form>
+</main>
+
+</body>
+</html>
